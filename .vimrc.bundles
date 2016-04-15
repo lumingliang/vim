@@ -1,0 +1,230 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" ################### 显示增强-主题 ###################"
+
+" 主题 solarized
+Bundle 'altercation/vim-colors-solarized'
+let g:solarized_termtrans=1
+let g:solarized_contrast="normal"
+let g:solarized_visibility="normal"
+" let g:solarized_termcolors=256
+
+" 主题 molokai
+"Bundle 'tomasr/molokai'
+" monokai原始背景色
+"let g:molokai_original = 1
+
+" 主题 tomorrow
+Bundle 'chriskempson/vim-tomorrow-theme'
+
+
+
+"代码缩进标识插件
+
+Plugin 'Yggdroot/indentLine'
+
+"change character color
+let g:indentLine_color_term = 239
+"change indent char
+let g:indentLine_char = 'c'
+"disable by default
+let g:indentLine_enabled = 1 
+":IndentLinesToggle toggles lines on and off.
+
+
+"更高效的移动 [,, + w/fx]
+Bundle 'Lokaltog/vim-easymotion'
+let g:EasyMotion_smartcase = 1
+"let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
+map <Leader><leader>h <Plug>(easymotion-linebackward)
+map <Leader><Leader>j <Plug>(easymotion-j)
+map <Leader><Leader>k <Plug>(easymotion-k)
+map <Leader><leader>l <Plug>(easymotion-lineforward)
+" 重复上一次操作, 类似repeat插件, 很强大
+map <Leader><leader>. <Plug>(easymotion-repeat)
+
+" ################### 显示增强 ###################
+
+" 状态栏增强展示
+" 新的airline配置
+Bundle 'bling/vim-airline'
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_left_sep = '|'
+let g:airline_left_alt_sep = '❯'
+let g:airline_right_sep = '◀'
+let g:airline_right_alt_sep = '❮'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+" 是否打开tabline
+" let g:airline#extensions#tabline#enabled = 1
+
+" ################### 快速导航 ###################
+"目录导航
+Plugin 'scrooloose/nerdtree'
+map mn :NERDTreeToggle<CR>
+" map <F2> :NERDTreeToggle<CR>
+" let NERDTreeHighlightCursorline=1
+ let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
+
+" "close vim if the only window left open is a NERDTree
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
+" " s/v 分屏打开文件
+ let g:NERDTreeMapOpenSplit = 's'
+ let g:NERDTreeMapOpenVSplit = 'v'
+
+
+"Bundle 'jistr/vim-nerdtree-tabs'
+"map <Leader>n <plug>NERDTreeTabsToggle<CR>
+"" 关闭同步
+"let g:nerdtree_tabs_synchronize_view=0
+"let g:nerdtree_tabs_synchronize_focus=0
+"" 自动开启nerdtree
+""let g:nerdtree_tabs_open_on_console_startup=1
+
+" m 可以打开菜单，用来新增，删除文件等操作
+
+
+"taglist ,标签导航,还不用，
+"Bundle 'vim-scripts/taglist.vim'
+" 标签导航
+Bundle 'majutsushi/tagbar'
+nmap <F9> :TagbarToggle<CR>
+let g:tagbar_autofocus = 1
+"
+Plugin 'ervandew/supertab'
+
+" 文件搜索
+" change to https://github.com/ctrlpvim/ctrlp.vim
+Bundle 'ctrlpvim/ctrlp.vim'
+"let g:ctrlp_map = '<F1>'
+"let g:ctrlp_map = '<leader>p'
+nmap <C-p> :CtrlP<CR>
+"let g:ctrlp_cmd = 'CtrlP'
+map <leader>f :CtrlPMRU<CR> " " 打开缓存
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+    \ }
+let g:ctrlp_working_path_mode=0
+let g:ctrlp_match_window_bottom=1
+let g:ctrlp_max_height=15
+let g:ctrlp_match_window_reversed=0
+let g:ctrlp_mruf_max=500
+let g:ctrlp_follow_symlinks=1
+let g:ctrlp_working_path_mode = 'ra'
+
+" 快速注释
+Bundle 'scrooloose/nerdcommenter'
+let g:NERDSpaceDelims=1
+"[d] shift+v+方向键选中(默认当前行)   ->  ,cc  加上注释  -> ,cu 解开注释
+
+
+
+
+
+" Track the engine.
+Plugin 'SirVer/ultisnips'
+
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+
+let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips'
+map <leader>us :UltiSnipsEdit<CR>
+
+
+
+
+
+
+"自动配对各种括号
+Bundle 'jiangmiao/auto-pairs'
+let g:AutoPairsFlyMode = 1
+let g:AutoPairsShortcutBackInsert = '<M-b>'
+let g:AutoPairsShortcutToggle = '<leader>g'
+
+" 括号等的添加和删除
+Plugin 'tpope/vim-surround'
+
+"  'jklk' => jklk  yss'
+"  j => jk ds'
+"'  'jk' => jk cs'<
+"  修改"" 为 ''用cs"'
+" 修改"" 为<q></q> 用 cs"<q  <CR
+" 删除''用 ds'
+" 在jk 前后加入 ''用 ysiw'
+" 在'ttt' wa整个加入<>用 yss<
+"
+" js语法分析
+" Plugin 'othree/javascript-libraries-syntax.vim'
+" let g:used_javascript_libs = 'underscore,backbone'
+" autocmd BufReadPre *.js let b:javascript_lib_use_jquery = 1
+" autocmd BufReadPre *.js let b:javascript_lib_use_underscore = 1
+" autocmd BufReadPre *.js let b:javascript_lib_use_backbone = 1
+" autocmd BufReadPre *.js let b:javascript_lib_use_prelude = 0
+" autocmd BufReadPre *.js let b:javascript_lib_use_angularjs = 0
+
+" Plugin 'scrooloose/syntastic'
+" let g:syntastic_php_checkers = ['php']
+" let g:syntastic_js_checkers = ['jshint']
+
+" set statusline+=%#warningmsg#
+
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+
+" let g:syntastic_always_populate_loc_list = 1
+
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+
+"Plugin 'walm/jshint.vim'
+
+
+
+" Plugin 'Valloric/YouCompleteMe'
+
+" let g:ycm_key_list_select_completion = ['CTRL-J']
+
+" let g:ycm_key_list_previous_completion = ['CTRL-K']
+
+" let g:ycm_complete_in_comments = 1  "在注释输入中也能补全
+" let g:ycm_complete_in_strings = 1   "在字符串输入中也能补全
+" let g:ycm_use_ultisnips_completer = 1 "提示UltiSnips
+" let g:ycm_collect_identifiers_from_comments_and_strings = 1   "注释和字符串中的文字也会被收入补全
+" let g:ycm_collect_identifiers_from_tags_files = 1
+
+
+Plugin 'mattn/emmet-vim'
+let g:user_emmet_expandabbr_key = '<C-Z>'
+"let g:user_emmet_expandabbr_key = '<M-Z>'
+
+" Plugin 'tpope/vim-markdown'
+" autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+Plugin 'plasticboy/vim-markdown'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+
+
