@@ -1,9 +1,3 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
@@ -11,17 +5,18 @@ Plugin 'VundleVim/Vundle.vim'
 " ################### 显示增强-主题 ###################"
 
 " 主题 solarized
-Bundle 'altercation/vim-colors-solarized'
+Plugin 'altercation/vim-colors-solarized'
 let g:solarized_termtrans=1
 let g:solarized_contrast="normal"
 let g:solarized_visibility="normal"
-" let g:solarized_termcolors=256
+let g:solarized_termcolors=256
 
-" 主题 molokai
+"主题 molokai
 "Bundle 'tomasr/molokai'
-" monokai原始背景色
-"let g:molokai_original = 1
-
+Plugin 'tomasr/molokai'
+"monokai原始背景色
+let g:molokai_original = 1
+let g:rehash256 = 1
 " 主题 tomorrow
 Bundle 'chriskempson/vim-tomorrow-theme'
 
@@ -83,13 +78,13 @@ map mn :NERDTreeToggle<CR>
  let g:NERDTreeMapOpenVSplit = 'v'
 
 
-"Bundle 'jistr/vim-nerdtree-tabs'
-"map <Leader>n <plug>NERDTreeTabsToggle<CR>
+" Bundle 'jistr/vim-nerdtree-tabs'
+" map <Leader>n <plug>NERDTreeTabsToggle<CR>
 "" 关闭同步
 "let g:nerdtree_tabs_synchronize_view=0
 "let g:nerdtree_tabs_synchronize_focus=0
 "" 自动开启nerdtree
-""let g:nerdtree_tabs_open_on_console_startup=1
+"let g:nerdtree_tabs_open_on_console_startup=1
 
 " m 可以打开菜单，用来新增，删除文件等操作
 
@@ -97,10 +92,10 @@ map mn :NERDTreeToggle<CR>
 "taglist ,标签导航,还不用，
 "Bundle 'vim-scripts/taglist.vim'
 " 标签导航
-Bundle 'majutsushi/tagbar'
-nmap <F9> :TagbarToggle<CR>
-let g:tagbar_autofocus = 1
-"
+Plugin 'majutsushi/tagbar'
+" nmap <F9> :TagbarToggle<CR>
+" let g:tagbar_autofocus = 1
+
 Plugin 'ervandew/supertab'
 
 " 文件搜索
@@ -110,7 +105,7 @@ Bundle 'ctrlpvim/ctrlp.vim'
 "let g:ctrlp_map = '<leader>p'
 nmap <C-p> :CtrlP<CR>
 "let g:ctrlp_cmd = 'CtrlP'
-map <leader>f :CtrlPMRU<CR> " " 打开缓存
+nmap <leader>f :CtrlPMRU<CR> " " 打开缓存
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
     \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
@@ -122,6 +117,11 @@ let g:ctrlp_match_window_reversed=0
 let g:ctrlp_mruf_max=500
 let g:ctrlp_follow_symlinks=1
 let g:ctrlp_working_path_mode = 'ra'
+" c-f c-b 切换各个模式
+" c-r 切换到正则表达式模式
+" c-t , c-v 分标签，分屏打开
+" c-n , c-p 查看前后历史文件
+" :help ctrlp-mappings 查看热键配置
 
 " 快速注释
 Bundle 'scrooloose/nerdcommenter'
@@ -183,37 +183,6 @@ Plugin 'tpope/vim-surround'
 " autocmd BufReadPre *.js let b:javascript_lib_use_prelude = 0
 " autocmd BufReadPre *.js let b:javascript_lib_use_angularjs = 0
 
-" Plugin 'scrooloose/syntastic'
-" let g:syntastic_php_checkers = ['php']
-" let g:syntastic_js_checkers = ['jshint']
-
-" set statusline+=%#warningmsg#
-
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-
-" let g:syntastic_always_populate_loc_list = 1
-
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-
-"Plugin 'walm/jshint.vim'
-
-
-
-" Plugin 'Valloric/YouCompleteMe'
-
-" let g:ycm_key_list_select_completion = ['CTRL-J']
-
-" let g:ycm_key_list_previous_completion = ['CTRL-K']
-
-" let g:ycm_complete_in_comments = 1  "在注释输入中也能补全
-" let g:ycm_complete_in_strings = 1   "在字符串输入中也能补全
-" let g:ycm_use_ultisnips_completer = 1 "提示UltiSnips
-" let g:ycm_collect_identifiers_from_comments_and_strings = 1   "注释和字符串中的文字也会被收入补全
-" let g:ycm_collect_identifiers_from_tags_files = 1
-
 
 Plugin 'mattn/emmet-vim'
 let g:user_emmet_expandabbr_key = '<C-Z>'
@@ -223,8 +192,9 @@ let g:user_emmet_expandabbr_key = '<C-Z>'
 " autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 Plugin 'plasticboy/vim-markdown'
 
-call vundle#end()            " required
-filetype plugin indent on    " required
+Plugin 'docunext/closetag.vim'
+let g:closetag_html_style=1
 
 
+Bundle 'joonty/vdebug.git'
 

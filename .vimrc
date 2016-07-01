@@ -1,14 +1,22 @@
+set nocompatible
+set fileencoding=utf-8
+set fileencodings=ucs-bom,utf-8,gbk,cp936,gb2312
+set fileencodings+=big5,euc-jp,euc-kr,latin1
+let &termencoding=&encoding
+set encoding=utf-8
+language messages en_US
+syntax on
+" source ~/.vim/filetype.vim
+" set Vundle
+"set nocompatible
+filetype off
 
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+source ~/.vimrc.bundles
 
-" install Vundle bundles
-" if filereadable(expand("~/.vimrc.bundles"))
-  " source ~/.vimrc.bundles
-" endif
-source ~/.vim/filetype.vim
-
-"source ~/.vimrc.bundles
-" ensure ftdetect et al work by including this after the Vundle stuff
-"filetype plugin indent on
+call vundle#end()
+filetype plugin indent on
 
 
 " 修改leader键
@@ -37,42 +45,18 @@ syntax on
 set mouse-=a
 set mousehide               " Hide the mouse cursor while typing
 
-filetype plugin indent on
-filetype plugin on "支持插件
 
-set fileencodings=ucs-bom,utf-8,cp936 "自动识别的文件编码
- " set encoding=utf-8
- " set fileencodings=utf-8
- " set termencoding=utf-8
-
-set fileformats=unix
-set encoding=prc
 
 " tab相关变更
-" set tabstop=4     " 设置Tab键的宽度        [等同的空格个数]
-" set shiftwidth=4  " 每一次缩进对应的空格数
-" set softtabstop=4 " 按退格键时可以一次删掉 4 个空格
-" 只有支持autocommands时会执行这部分代码。
-if has("autocmd")
-
-filetype plugin indent on
-autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
-
-endif
-"　　” 对于其它情况，使用4个空格宽度的TA
-set tabstop=4 ""“ TAB的宽度被设置为4个空格。
-"　　” 但仍然是\t. 只是vim把它解释成4个空格宽度，用别的编辑器还是\t符号
-"　　“ Vim will interpret it to be having
-"　　” a width of 4.
-set shiftwidth=4 ""“ 缩进使用4个空格的宽度。
-set softtabstop=4 "" 设置tab所占的列数，当输入tab时，设为4个空格的宽度。
+set tabstop=4     " 设置Tab键的宽度        [等同的空格个数]
+set shiftwidth=4  " 每一次缩进对应的空格数
+set softtabstop=4 " 按退格键时可以一次删掉 4 个空格
 set expandtab "   扩展tab为空格。
 
 " 设定复制粘贴时取消自动换行
 "set pastetoggle = <F8>
 
 " 命令行（在状态行下）的高度，默认为1，这里是2
-set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
 " Always show the status line - use 2 lines for the status bar
 set laststatus=2
 
@@ -122,14 +106,6 @@ endfun
 set autoindent "每行缩进与上一行一致
 set smartindent "自动在enter后缩进两个空格
 set cindent
-set background=dark
-"set expandtab
-"set smarttab
-"set shiftwidth=2
-"set softtabstop=2
-"set tabstop=2
-"set wildignore=*.pyc
-"set ignorecase
 set smartcase
 set hlsearch
 set incsearch
@@ -196,7 +172,7 @@ imap kj <Esc>
 nmap <leader>y "*yy
 vmap <leader>y "*yy
 nmap <leader>p "*p
-nmap <F5> :source ~/.vimrc<CR>
+" nmap <F5> :source ~/.vimrc<CR>
 "Smart way to move between windows 分屏窗口移动
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -204,8 +180,8 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 "执行其他代码
-autocmd FileType python nnoremap <buffer> <F2> :w<CR>:!python % <CR>
-autocmd FileType javascript nnoremap <buffer> <F2> :w<CR>:!python % <CR>
+" autocmd FileType python nnoremap <buffer> <F2> :w<CR>:!python % <CR>
+" autocmd FileType javascript nnoremap <buffer> <F2> :w<CR>:!python % <CR>
 
 "windows max and so on
 "最大化
@@ -259,77 +235,22 @@ nnoremap U <C-r>
 
 
 
-
-
-
-
-
-
-
-
-
 "==========================================
 " Theme Settings  主题设置
 "==========================================
 
-" Set extra options when running in GUI mode
-"if has("gui_running")
-"    set guifont=Monaco:h14
-"    if has("gui_gtk2")   "GTK2
-"        set guifont=Monaco\ 12,Monospace\ 12
-"    endif
-"    set guioptions-=T
-"    set guioptions+=e
-"    set guioptions-=r
-"    set guioptions-=L
-"    set guitablabel=%M\ %t
-"    set showtabline=1
-"    set linespace=2
-"    set noimd
-"    set t_Co=256
-"endif
-
-" allows cursor change in tmux mode
-"if exists('$TMUX')
-"    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-"    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-"else
-"    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-"    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-"endif
 
 " theme主题
 set background=dark
 "set background=day
+"syntax enable
+"set background=light
 set t_Co=256
 "colorscheme solarized
-colorscheme Tomorrow-Night
+"colorscheme Tomorrow-Night
 "colorscheme Tomorrow-Night-Bright
+colorscheme molokai
 "colorscheme desert
-
-
-
-
-
-" 设置标记一列的背景颜色和数字一行颜色一致
-"hi! link SignColumn   LineNr
-"hi! link ShowMarksHLl DiffAdd
-"hi! link ShowMarksHLu DiffChange
-"
-"" for error highlight，防止错误整行标红导致看不清
-"highlight clear SpellBad
-"highlight SpellBad term=standout ctermfg=1 term=underline cterm=underline
-"highlight clear SpellCap
-"highlight SpellCap term=underline cterm=underline
-"highlight clear SpellRare
-"highlight SpellRare term=underline cterm=underline
-"highlight clear SpellLocal
-"highlight SpellLocal term=underline cterm=underline
-"
-"
-"
-"
-
 
 
 
@@ -341,88 +262,3 @@ if has('persistent_undo')
   set undofile                " So is persistent undo ...
   set undodir=/tmp/vimundo/
 endif
-
-
-" " Auto Session Save/Restore
-" function GetProjectName()
-    " " Get the current editing file list, Unix only
-    " let edit_files = split(system("ps -o command= -p " . getpid()))
-    " if len(edit_files) >= 2
-        " let project_path = edit_files[1]
-        " if project_path[0] != '/'
-            " let project_path = getcwd() . project_path
-        " endif
-    " else
-        " let project_path = getcwd()
-    " endif
-
-    " return shellescape(substitute(project_path, '[/]', '', 'g'))
-" endfunction
-
-" function SaveSession()
-    " "NERDTree doesn't support session, so close before saving
-    " execute ':NERDTreeClose' 
-    " let project_name = GetProjectName()
-    " execute 'mksession! ~/.vim/sessions/' . project_name
-" endfunction
-
-" function RestoreSession()
-    " let session_path = expand('~/.vim/sessions/' . GetProjectName())
-    " if filereadable(session_path)
-        " execute 'so ' . session_path
-        " if bufexists(1)
-            " for l in range(1, bufnr('$'))
-                " if bufwinnr(l) == -1
-                    " exec 'sbuffer ' . l
-                " endif
-            " endfor
-        " endif
-    " endif
-    " "Make sure the syntax is on
-    " syntax on 
-" endfunction
-
-" nmap ssa :call SaveSession()
-" smap SO :call RestoreSession()
-" autocmd VimLeave * call SaveSession()
-" autocmd VimEnter * call RestoreSession()
-
-" " Persistent undo
-" set undodir=~/.vim/undodir
-" set undofile
-" set undolevels=1000 "maximum number of changes that can be undone
-" set undoreload=10000 "maximum number lines to save for undo on a buffer reload
-
-" 为C程序提供自动缩进
-set smartindent 
-"代码补全
-set completeopt=preview,menu 
-"自动补全
-:inoremap ( ()<ESC>i 
-:inoremap ) <c-r>=ClosePair(')')<CR> 
-:inoremap { {<CR>}<ESC>O 
-:inoremap } <c-r>=ClosePair('}')<CR> 
-:inoremap [ []<ESC>i 
-:inoremap ] <c-r>=ClosePair(']')<CR> 
-:inoremap " ""<ESC>i 
-":inoremap " <c-r>=ClosePair('"')<CR> 
-:inoremap ' ''<ESC>i 
-":inoremap ' <c-r>=ClosePair('\'')<CR> 
-function! ClosePair(char) 
-if getline('.')[col('.') - 1] == a:char 
-return "\<Right>" 
-else 
-return a:char 
-endif 
-endfunction 
-filetype plugin indent on 
-"打开文件类型检测, 加了这句才可以用智能补全
-set completeopt=longest,menu 
-
-
-
-
-
-
-
-
