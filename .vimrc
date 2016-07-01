@@ -1,3 +1,4 @@
+"git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 set nocompatible
 set fileencoding=utf-8
 set fileencodings=ucs-bom,utf-8,gbk,cp936,gb2312
@@ -8,7 +9,7 @@ language messages en_US
 syntax on
 " source ~/.vim/filetype.vim
 " set Vundle
-"set nocompatible
+set nocompatible
 filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
