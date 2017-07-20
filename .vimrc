@@ -17,7 +17,8 @@ call vundle#begin()
 source ~/.vimrc.bundles
 
 call vundle#end()
-filetype plugin indent on
+"开启会使粘贴多余缩进
+"filetype plugin indent on
 
 
 " 修改leader键
