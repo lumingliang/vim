@@ -21,7 +21,6 @@ filetype plugin indent on
 
 
 " 修改leader键
-let mapleader = ','
 let g:mapleader = ','
 
 
@@ -166,8 +165,8 @@ set magic
 "some usful map
 vmap ls <Esc>
 imap kk <Esc>
-nmap e 2<C-e>
-nmap t 2<C-y>
+nmap e 10<C-e>
+nmap t 10<C-y>
 nmap <up> 3<C-y>
 nmap <down> 3<C-e>
 nmap <leader>y "*yy
@@ -180,6 +179,10 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+noremap H ^
+noremap L $
+noremap r 3w
+noremap f 3b
 
 "执行其他代码
 " autocmd FileType python nnoremap <buffer> <F2> :w<CR>:!python % <CR>
