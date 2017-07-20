@@ -2,8 +2,8 @@
 set nocompatible
 set fileencoding=utf-8
 set fileencodings=ucs-bom,utf-8,gbk,cp936,gb2312
-set fileencodings+=big5,euc-jp,euc-kr,latin1
-let &termencoding=&encoding
+"set fileencodings+=big5,euc-jp,euc-kr,latin1
+"let &termencoding=&encoding
 set encoding=utf-8
 language messages en_US
 syntax on
@@ -77,7 +77,7 @@ set scrolloff=7
 
 
 " 代码折叠
-set foldenable
+"set foldenable
 " 折叠方法
 " manual    手工折叠
 " indent    使用缩进表示折叠
@@ -85,55 +85,52 @@ set foldenable
 " syntax    使用语法定义折叠
 " diff      对没有更改的文本进行折叠
 " marker    使用标记进行折叠, 默认标记是 {{{ 和 }}}
-set foldmethod=indent
-set foldlevel=99
+"set foldmethod=indent
+"set foldlevel=99
 " 代码折叠自定义快捷键
-let g:FoldMethod = 0
-map <leader>zz :call ToggleFold()<cr>
-fun! ToggleFold()
-    if g:FoldMethod == 0
-        exe "normal! zM"
-        let g:FoldMethod = 1
-    else
-        exe "normal! zR"
-        let g:FoldMethod = 0
-    endif
-endfun
+"let g:FoldMethod = 0
+"map <leader>zz :call ToggleFold()<cr>
+"fun! ToggleFold()
+"    if g:FoldMethod == 0
+"        exe "normal! zM"
+"        let g:FoldMethod = 1
+"    else
+"        exe "normal! zR"
+"        let g:FoldMethod = 0
+"    endif
+"endfun
 
 
-
-
-
-set autoindent "每行缩进与上一行一致
-set smartindent "自动在enter后缩进两个空格
-set cindent
-set smartcase
+"set autoindent "每行缩进与上一行一致
+"set smartindent "自动在enter后缩进两个空格
+"set cindent
+"set smartcase
 set hlsearch
 set incsearch
-set shiftround
+"set shiftround
 set history=1000
 set noswapfile
 set nobackup
 set number
-set linespace=3
+"set linespace=3
 
 " 相对行号      行号变成相对，可以用 nj  nk   进行跳转 5j   5k 上下跳5行
-set relativenumber number
-au FocusLost * :set norelativenumber number
-au FocusGained * :set relativenumber
+"set relativenumber number
+"au FocusLost * :set norelativenumber number
+"au FocusGained * :set relativenumber
 " 插入模式下用绝对行号, 普通模式下用相对
-autocmd InsertEnter * :set norelativenumber number
-autocmd InsertLeave * :set relativenumber
-function! NumberToggle()
-  if(&relativenumber == 1)
-    set norelativenumber number
-  else
-    set relativenumber
-  endif
-endfunc
-nnoremap <C-n> :call NumberToggle()<cr>
+"autocmd InsertEnter * :set norelativenumber number
+"autocmd InsertLeave * :set relativenumber
+"function! NumberToggle()
+"  if(&relativenumber == 1)
+"    set norelativenumber number
+"  else
+"    set relativenumber
+"  endif
+"endfunc
+"nnoremap <C-n> :call NumberToggle()<cr>
 
-set nobackup
+"set nobackup
 " 关闭交换文件
 set noswapfile
 "匹配文件时候忽视这些
@@ -149,8 +146,8 @@ set t_ti= t_te=
 set title                " change the terminal's title
 set novisualbell         " don't beep
 set noerrorbells         " don't beep
-set t_vb=
-set tm=500
+"set t_vb=
+"set tm=500
 " Remember info about open buffers on close"
 
 "分别指1000个标记信息，保存缓冲区列表，500冒号命令，1000输入历史命令
@@ -159,20 +156,24 @@ set viminfo='1000,%,:500,@1000
 " For regular expressions turn magic on
 set magic
 " Configure backspace so it acts as it should act
-set backspace=eol,start,indent
-set whichwrap+=<,>,h,l
-
-
+"set backspace=eol,start,indent
+"set whichwrap+=<,>,h,l
 
 
 
 
 
 "some usful map
-imap kj <Esc>
+vmap ls <Esc>
+imap kk <Esc>
+nmap e 2<C-e>
+nmap t 2<C-y>
+nmap <up> 3<C-y>
+nmap <down> 3<C-e>
 nmap <leader>y "*yy
 vmap <leader>y "*yy
 nmap <leader>p "*p
+
 " nmap <F5> :source ~/.vimrc<CR>
 "Smart way to move between windows 分屏窗口移动
 map <C-j> <C-W>j
@@ -184,19 +185,6 @@ map <C-l> <C-W>l
 " autocmd FileType python nnoremap <buffer> <F2> :w<CR>:!python % <CR>
 " autocmd FileType javascript nnoremap <buffer> <F2> :w<CR>:!python % <CR>
 
-"windows max and so on
-"最大化
-nmap <leader>sx <ESC>:simalt ~x<CR>
-"还原
-nmap <leader>sr <ESC>:simalt ~r<CR>
-"最小化
-nmap <leader>sn <ESC>:simalt ~n<CR>
-" Go to home and end using capitalized directions
-noremap H ^
-noremap L $
-" noremap <c-e> f
-" noremap <C-y> g
-"
 "设置标签
 noremap <leader>n :tabnew<CR>
 noremap <leader>1 :tabnext<CR>
@@ -228,12 +216,8 @@ noremap <right> :bn<CR>
 " select all
 map <Leader>sa ggVG"
 " 滚动Speed up scrolling of the viewport slightly
-nnoremap <C-e> 4<C-e>
-nnoremap <C-y> 4<C-y>
 " remap U to <C-r> for easier redo
 nnoremap U <C-r>
-"iunmap <C->
-
 
 
 "==========================================

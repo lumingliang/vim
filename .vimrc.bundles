@@ -5,11 +5,11 @@ Plugin 'VundleVim/Vundle.vim'
 " ################### 显示增强-主题 ###################"
 
 " 主题 solarized
-Plugin 'altercation/vim-colors-solarized'
-let g:solarized_termtrans=1
-let g:solarized_contrast="normal"
-let g:solarized_visibility="normal"
-let g:solarized_termcolors=256
+"Plugin 'altercation/vim-colors-solarized'
+"let g:solarized_termtrans=1
+"let g:solarized_contrast="normal"
+"let g:solarized_visibility="normal"
+"let g:solarized_termcolors=256
 
 "主题 molokai
 "Bundle 'tomasr/molokai'
@@ -18,7 +18,7 @@ Plugin 'tomasr/molokai'
 let g:molokai_original = 1
 let g:rehash256 = 1
 " 主题 tomorrow
-Bundle 'chriskempson/vim-tomorrow-theme'
+"Bundle 'chriskempson/vim-tomorrow-theme'
 
 
 
@@ -36,16 +36,16 @@ let g:indentLine_enabled = 1
 
 
 "更高效的移动 [,, + w/fx]
-Bundle 'Lokaltog/vim-easymotion'
-let g:EasyMotion_smartcase = 1
+"Bundle 'Lokaltog/vim-easymotion'
+"let g:EasyMotion_smartcase = 1
 "let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
-map <Leader><leader>h <Plug>(easymotion-linebackward)
-map <Leader><Leader>j <Plug>(easymotion-j)
-map <Leader><Leader>k <Plug>(easymotion-k)
-map <Leader><leader>l <Plug>(easymotion-lineforward)
+"map <Leader><leader>h <Plug>(easymotion-linebackward)
+"map <Leader><Leader>j <Plug>(easymotion-j)
+"map <Leader><Leader>k <Plug>(easymotion-k)
+"map <Leader><leader>l <Plug>(easymotion-lineforward)
 " 重复上一次操作, 类似repeat插件, 很强大
-map <Leader><leader>. <Plug>(easymotion-repeat)
-
+"map <Leader><leader>. <Plug>(easymotion-repeat)
+"
 " ################### 显示增强 ###################
 
 " 状态栏增强展示
@@ -92,36 +92,40 @@ map mn :NERDTreeToggle<CR>
 "taglist ,标签导航,还不用，
 "Bundle 'vim-scripts/taglist.vim'
 " 标签导航
-Plugin 'majutsushi/tagbar'
+"Plugin 'majutsushi/tagbar'
 " nmap <F9> :TagbarToggle<CR>
 " let g:tagbar_autofocus = 1
-
-Plugin 'ervandew/supertab'
+"
+"Plugin 'ervandew/supertab'
 
 " 文件搜索
 " change to https://github.com/ctrlpvim/ctrlp.vim
 Bundle 'ctrlpvim/ctrlp.vim'
-"let g:ctrlp_map = '<F1>'
-"let g:ctrlp_map = '<leader>p'
-nmap <C-p> :CtrlP<CR>
-"let g:ctrlp_cmd = 'CtrlP'
-nmap <leader>f :CtrlPMRU<CR> " " 打开缓存
+nnoremap <leader>r :CtrlP<CR>
+" "let g:ctrlp_cmd = 'CtrlP'
+" "打开缓存
+nnoremap <leader>m :CtrlPMRU<CR>
+nnoremap <leader>h :CtrlPMRU<CR> 
+" "打开buffer
+map <leader>b :CtrlPBuffer<CR>
 let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
-    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+    \ 'dir':  '\v[\/]\.(git|hg|svn|src|rvm)$',
+    \ 'file': '\v\.(exe|data|eml|pdf|so|min.js|sql|png|txt|lnk|xml|rar|swf|svg|gif|jpg|css|js|map|dll|zip|tar|tar.gz|pyc)$',
     \ }
-let g:ctrlp_working_path_mode=0
-let g:ctrlp_match_window_bottom=1
-let g:ctrlp_max_height=15
-let g:ctrlp_match_window_reversed=0
 let g:ctrlp_mruf_max=500
+" results:20不用设为很大，模糊匹配会把后面的结果都显示出来
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:20'
 let g:ctrlp_follow_symlinks=1
-let g:ctrlp_working_path_mode = 'ra'
-" c-f c-b 切换各个模式
-" c-r 切换到正则表达式模式
-" c-t , c-v 分标签，分屏打开
-" c-n , c-p 查看前后历史文件
-" :help ctrlp-mappings 查看热键配置
+let g:ctrlp_use_caching = 1
+let g:ctrlp_max_files = 0
+" let g:ctrlp_open_new_file = 'v'
+" 如果在buffer 中已经有了就直接跳到已经打开的
+let g:ctrlp_switch_buffer = 'Et'
+let g:ctrlp_lazy_update = 1
+" 启用当前工作目录为搜索目录，而不是当前文件的目录
+let g:ctrlp_working_path_mode = 'w'
+let g:ctrlp_use_caching = 1 
+
 
 " 快速注释
 Bundle 'scrooloose/nerdcommenter'
@@ -133,10 +137,10 @@ let g:NERDSpaceDelims=1
 
 
 " Track the engine.
-Plugin 'SirVer/ultisnips'
+"Plugin 'SirVer/ultisnips'
 
 " Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
+"Plugin 'honza/vim-snippets'
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 " let g:UltiSnipsExpandTrigger="<tab>"
@@ -145,11 +149,11 @@ Plugin 'honza/vim-snippets'
 
 
 " If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-
-let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips'
-map <leader>us :UltiSnipsEdit<CR>
+"let g:UltiSnipsEditSplit="vertical"
+"
+"
+"let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips'
+"map <leader>us :UltiSnipsEdit<CR>
 
 
 
@@ -163,7 +167,7 @@ let g:AutoPairsShortcutBackInsert = '<M-b>'
 let g:AutoPairsShortcutToggle = '<leader>g'
 
 " 括号等的添加和删除
-Plugin 'tpope/vim-surround'
+"Plugin 'tpope/vim-surround'
 
 "  'jklk' => jklk  yss'
 "  j => jk ds'
@@ -184,17 +188,18 @@ Plugin 'tpope/vim-surround'
 " autocmd BufReadPre *.js let b:javascript_lib_use_angularjs = 0
 
 
-Plugin 'mattn/emmet-vim'
-let g:user_emmet_expandabbr_key = '<C-Z>'
+"Plugin 'mattn/emmet-vim'
+"let g:user_emmet_expandabbr_key = '<C-Z>'
 "let g:user_emmet_expandabbr_key = '<M-Z>'
 
 " Plugin 'tpope/vim-markdown'
 " autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-Plugin 'plasticboy/vim-markdown'
+"Plugin 'plasticboy/vim-markdown'
+"
+"Plugin 'docunext/closetag.vim'
+"let g:closetag_html_style=1
 
-Plugin 'docunext/closetag.vim'
-let g:closetag_html_style=1
 
-
+Plugin 'wincent/command-t'
 Bundle 'joonty/vdebug.git'
 
